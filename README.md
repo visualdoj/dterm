@@ -1,4 +1,4 @@
-# dterminal
+# dterm
 
 Cross-platform Terminal/TTY utils. Supports:
 
