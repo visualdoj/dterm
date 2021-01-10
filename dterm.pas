@@ -49,15 +49,14 @@ procedure FinishTerminalStatusLine;
 
 implementation
 
-uses
 {$IF Defined(UNIX)}
+uses
   BaseUnix, // FpIOCtl, see UNIX_GetTerminalWidth
-  termio, // IsATTY
+  termio; // IsATTY
 {$ELSEIF Defined(WINDOWS)}
-  windows,
+uses
+  windows;
 {$ENDIF}
-  sysutils,
-  variants;
 
 {$IF Defined(UNIX)}
 const
