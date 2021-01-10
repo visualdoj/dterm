@@ -51,10 +51,10 @@ Colors and status line are automatically disabled for non-terminal pipes.
 funcions did you call before, are we in status line, what color is set now etc.
 It's client responsibility in restoring terminal state.
 
-[dterminal](dterminal.pas) unit implements a wrapper object TTerminal. For now
-it does not do much more than the dterm. It provides similar interface,
-additionaly it keeps tacking if we are in staus line or not (with
-TTerminal.InStatusLine) and auto resets state in destructor.
+[dterminal](dterminal.pas) unit implements a wrapper object `TTerminal`.  For
+now it does not do much more than the dterm. It provides similar interface,
+additionaly it keeps tracking of some states (`TTerminal.InStatusLine` returns
+true if status line is enabled) and auto resets color in destructor.
 
 ```pascal
 uses
