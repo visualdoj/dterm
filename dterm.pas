@@ -228,7 +228,7 @@ end;
 
 procedure ResetTerminalColor;
 begin
-  SetTerminalColor(Terminal_COLOR_DEFAULT);
+  SetTerminalColor(TERMINAL_COLOR_DEFAULT);
 end;
 
 procedure SetTerminalColor(Color: TTerminalColor; BackgroundColor: TTerminalColor = TERMINAL_COLOR_DEFAULT);
@@ -285,9 +285,6 @@ begin
     Writeln(Line);
     Exit;
   end;
-  // StatusLine := S;
-  // if not UseStatusLine then
-  //   Exit;
 {$IF Defined(UNIX)}
   TerminalWidth := UNIX_GetTerminalWidth(output);
   if TerminalWidth <= 0 then
@@ -295,9 +292,9 @@ begin
   // Clear previous status line first
   Write(#$0D);
   Write(Space(TerminalWidth));
+  // Now the actual output
   if Length(Line) > TerminalWidth then
     SetLength(Line, TerminalWidth);
-  // Now the actual output
   Write(#$0D);
   Write(Line);
 {$ELSEIF Defined(WINDOWS)}
@@ -312,6 +309,8 @@ begin
     SetLength(Line, TerminalWidth);
   Write(#$0D);
   Write(Line);
+{$ELSE}
+  Writeln(Line);
 {$ENDIF}
 end;
 
