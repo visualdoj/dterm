@@ -301,14 +301,13 @@ begin
   TerminalWidth := WinApi_GetTerminalWidth(windows.GetStdHandle(windows.STD_OUTPUT_HANDLE));
   if TerminalWidth <= 0 then
     TerminalWidth := 60;
-  // Clear previous status line first
-  Write(#$0D);
-  Write(Space(TerminalWidth));
-  // Now the actual output
+  // Overwrite previous status line
   if Length(Line) > TerminalWidth then
     SetLength(Line, TerminalWidth);
   Write(#$0D);
   Write(Line);
+  // Clear the rest of the line
+  Write(Space(TerminalWidth - Length(Line)));
 {$ELSE}
   Writeln(Line);
 {$ENDIF}
